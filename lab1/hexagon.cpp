@@ -17,7 +17,7 @@ Hexagon::Hexagon(std::istream &is) {
 
 
 void Hexagon::Print() {
-    std::cout << "Hexaagon: ";
+    std::cout << "Hexagon: ";
     std::cout << a << ", ";
     std::cout << b << ", ";
     std::cout << c << ", ";
