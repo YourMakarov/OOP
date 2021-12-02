@@ -5,10 +5,9 @@
     "Hexagon",
     "Octagon"
   ],
-  "containers": [
-  ],
+  "containers": ["TStack"],
   "finished_labs": {
     "lab1": "lab1"
-    "lab2": "__in_progress__"
+    "lab2": "lab2"
   }
 }
