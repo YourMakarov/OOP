@@ -7,7 +7,7 @@ TimePoint::TimePoint(): hour_(0), minutes_(0), sec_(0) {}
 TimePoint::TimePoint(const TimePoint &m): hour_(m.hour_), minutes_(m.minutes_), sec_(m.sec_) {}
 
 
-TimePoint::TimePoint(const int sec, const int min, const int hour): hour_(hour), minutes_(min), sec_(sec) {}
+TimePoint::TimePoint(const int hour, const int min, const int sec): hour_(hour), minutes_(min), sec_(sec) {}
 
 void TimePoint:: reFresh(){
   if (sec_>=60) {
@@ -101,9 +101,10 @@ bool TimePoint::operator<(const TimePoint &m){
 //Сумма моментов
 TimePoint TimePoint::operator+(const TimePoint &m){
     sec_ = sec_+minutes_*60+hour_*3600;
-    int ms = m.sec_+m.minutes_*60+m.hour_*3600;
+    int ms = 0;
+    ms = m.sec_+m.minutes_*60+m.hour_*3600;
     sec_ = sec_ + ms;
-    reFresh();
+  
     return *this;
 }
 //Сумма моментов
