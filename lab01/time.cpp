@@ -2,33 +2,48 @@
 
 
 
-TimePoint::TimePoint(): data_(0) {}
+TimePoint::TimePoint(): hour_(0), minutes_(0), sec_(0) {}
 
-TimePoint::TimePoint(const TimePoint &m): data_(m.data_) {}
+TimePoint::TimePoint(const TimePoint &m): hour_(m.hour_), minutes_(m.minutes_), sec_(m.sec_) {}
 
-TimePoint::TimePoint(const int a): data_(a) {}
 
-TimePoint::TimePoint(const int sec, const int min, const int hour): data_(sec + min*60 +hour*3600) {}
+TimePoint::TimePoint(const int sec, const int min, const int hour): hour_(hour), minutes_(min), sec_(sec) {}
+
+void TimePoint:: reFresh(){
+  if (sec_>=60) {
+      minutes_+= sec_/60;
+      sec_= sec_%60;
+      if (minutes_>=60) {
+        hour_+= minutes_/60;
+        minutes_= minutes_%60;
+        if (hour_>=24) hour_ = hour_%24;
+      }
+    }
+}
 
 //Объект + секунды
 TimePoint TimePoint::operator+(const int sec){
-    data_ = data_ + sec;
+    sec_ = sec_ + sec;
+    reFresh();
     return *this;
 }
 //Объект + секунды
 
-int TimePoint:: sec (){
-  return data_;
+int TimePoint:: sec(){
+  return hour_*3600+minutes_*60+sec_;
 }
 
 int TimePoint:: min (){
-  return data_ / 60;
+  return hour_*60+minutes_;
 }
 
 //Объект-секунды
 TimePoint TimePoint::operator-(int sec){
-    if(data_ > sec){
-    data_ = data_ - sec;
+
+    if(sec < sec_+minutes_*60+hour_*3600){
+    sec_+= minutes_*60+hour_*3600;
+    sec_ = sec_ - sec;
+    reFresh();
     }
     return *this;
 }
@@ -37,13 +52,15 @@ TimePoint TimePoint::operator-(int sec){
 
 
 //Во сколько раз отличаются
-int TimePoint::operator/(const TimePoint &moment){
+int TimePoint::operator/(const TimePoint &m){
     int num = 0;
-    if((data_ >= moment.data_) && (moment.data_ > 0)) {
-      num = data_ / moment.data_;
+    int s = sec_+minutes_*60+hour_*3600;
+    int ms = m.sec_+m.minutes_*60+m.hour_*3600;
+    if((s >= ms) && (ms > 0)) {
+      num = s / ms;
     }
-    if((moment.data_ > data_) && (data_ > 0)) {
-      num = data_ / moment.data_;
+    if((ms > s) && (s > 0)) {
+      num = s / ms;
     }
 
     return num;
@@ -51,38 +68,47 @@ int TimePoint::operator/(const TimePoint &moment){
 //
 
 //Разница
-TimePoint TimePoint::operator-(const TimePoint &moment){
-    if(data_ < moment.data_) data_ = moment.data_ - data_;
-    else data_ = data_ - moment.data_;
+TimePoint TimePoint::operator-(const TimePoint &m){
+    sec_ = sec_+minutes_*60+hour_*3600;
+    int ms = m.sec_+m.minutes_*60+m.hour_*3600;
+    if(sec_ < ms) sec_ = ms - sec_;
+    else sec_ = sec_ - ms;
+    hour_ = 0;
+    minutes_ = 0;
+    reFresh();
     return *this;
 }
 //Разница
 
 //Если больше
-bool TimePoint::operator>(const TimePoint &moment){
-    return data_ > moment.data_;
+bool TimePoint::operator>(const TimePoint &m){
+    return sec_+minutes_*60+hour_*3600 > m.sec_+m.minutes_*60+m.hour_*3600;
 }
 //Если больше
 
 //Если равны
-bool TimePoint::operator==(const TimePoint &moment){
-    return (data_ == moment.data_);
+bool TimePoint::operator==(const TimePoint &m){
+    return sec_+minutes_*60+hour_*3600 == m.sec_+m.minutes_*60+m.hour_*3600;
 }
 //Если равны
 
 //Если меньше
-bool TimePoint::operator<(const TimePoint &moment){
-    return data_ < moment.data_;
+bool TimePoint::operator<(const TimePoint &m){
+    return sec_+minutes_*60+hour_*3600 < m.sec_+m.minutes_*60+m.hour_*3600;
 }
 //Если меньше
 
 //Сумма моментов
-TimePoint TimePoint::operator+(const TimePoint &moment){
-    data_ = data_ + moment.data_;
+TimePoint TimePoint::operator+(const TimePoint &m){
+    sec_ = sec_+minutes_*60+hour_*3600;
+    int ms = m.sec_+m.minutes_*60+m.hour_*3600;
+    sec_ = sec_ + ms;
+    reFresh();
     return *this;
 }
 //Сумма моментов
+
 std::istream &operator>>(std::istream &is, TimePoint &object){
-    is >> object.data_;
+    is >> object.sec_;
     return is;
 }
