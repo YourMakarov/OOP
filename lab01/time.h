@@ -35,10 +35,9 @@ public:
     
 
 private:
-    int hour_;
-    int minutes_;
     int sec_;
+    int minutes_;
+    int hour_;
 };
-
 
 #endif 
