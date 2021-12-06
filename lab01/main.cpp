@@ -19,8 +19,8 @@ int main() {
             std::cout << "\n+ 12.25.60"<< std::endl << m.min();
             m = m - n;
             std::cout << "\n- 12.25.60"<< std::endl << m.min();
-            m = m / n;
-            std::cout << "\n/12.25.60"<< std::endl << m.min();
+            int t = m / n;
+            std::cout << "\n/12.25.60"<< std::endl << t;
         } 
     
 return 0;
