@@ -9,12 +9,12 @@ class TimePoint
 public:
     TimePoint();
     TimePoint(const TimePoint &m);
-    TimePoint(const int sec);
     TimePoint(const int sec, const int min, const int hour);
 
     TimePoint operator+(int sec);
     TimePoint operator-(int sec);
-
+    void reFresh();
+    
  
 
 
@@ -35,7 +35,9 @@ public:
     
 
 private:
-    int data_;
+    int hour_;
+    int minutes_;
+    int sec_;
 };
 
 
