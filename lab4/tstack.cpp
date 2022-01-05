@@ -48,7 +48,6 @@ void TStack<T>::Push(const std::shared_ptr<T> t) {
 template<typename T>
 void TStack<T>::Pop() {
   if (size == 0) {
-    std::cout << "Unable to perform pop! The queue is empty!" << std::endl;
     return;
   }
   std::shared_ptr<StackItem> item = this->top_;
