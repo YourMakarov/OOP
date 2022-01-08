@@ -1,5 +1,5 @@
-#ifndef MAI_OOP_TRIANGLE_H
-#define MAI_OOP_TRIANGLE_H
+#ifndef MAI_OOP_PENTAGON_H
+#define MAI_OOP_PENTAGON_H
 #include "figure.h"
 
 class Pentagon {
