@@ -4,16 +4,16 @@
 
 class TStack {
  private:
-  struct QueueItem {
+  struct StackItem {
     Pentagon data;
-    QueueItem *next;
+    StackItem *next;
   };
   size_t size;
-  QueueItem *top_;
+  StackItem *top_;
 
  public:
   TStack();
-  TStack(const TStack &queue);
+  TStack(const TStack &stack);
   size_t Length();
   bool Empty();
   Pentagon &Top();
