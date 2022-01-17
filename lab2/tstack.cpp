@@ -44,7 +44,7 @@ void TStack::Pop() {
     std::cout << "Unable to perform pop! The stack is empty!" << std::endl;
     return;
   }
-  QueueItem *item = top_;
+  StackItem *item = top_;
   top_ = top_->next;
 
   delete item;
@@ -71,7 +71,7 @@ std::ostream &operator<<(std::ostream &os, const TStack &object) {
 
 void TStack::Clear() {
   while (top_->next != nullptr) {
-    QueueItem *item = top_;
+    StackItem *item = top_;
     top_ = top_->next;
     delete item;
   }
@@ -81,7 +81,7 @@ void TStack::Clear() {
 
 TStack::~TStack() {
   while (top_->next != nullptr) {
-    QueueItem *item = top_;
+    StackItem *item = top_;
     top_ = top_->next;
     delete item;
   }
