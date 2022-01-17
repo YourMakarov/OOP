@@ -1,17 +1,17 @@
 #include "tstack.h"
 
 TStack::TStack() {
-  top_ = new QueueItem;
+  top_ = new StackItem;
   top_->next = nullptr;
   size = 0;
 }
 
 TStack::TStack(const TStack &stack) {
-  QueueItem *top = stack.top_;
+  StackItem *top = stack.top_;
 
   while (top->next != nullptr) {
     top_->data = top->data;
-    QueueItem *item1 = new QueueItem;
+    StackItem *item1 = new StackItem;
     item1->next = nullptr;
     top_->next = item1;
     top = top->next;
@@ -32,7 +32,7 @@ Pentagon &TStack::Top() {
 }
 
 void TStack::Push(const Pentagon &t) {
-  QueueItem *item = new QueueItem;
+  StackItem *item = new StackItem;
   item->data = t;
   item->next = top_;
   top_ = item;
@@ -41,7 +41,7 @@ void TStack::Push(const Pentagon &t) {
 
 void TStack::Pop() {
   if (size == 0) {
-    std::cout << "Unable to perform pop! The queue is empty!" << std::endl;
+    std::cout << "Unable to perform pop! The stack is empty!" << std::endl;
     return;
   }
   QueueItem *item = top_;
@@ -59,7 +59,7 @@ std::istream &operator>>(std::istream &is, TStack &object) {
 }
 
 std::ostream &operator<<(std::ostream &os, const TStack &object) {
-  TStack::QueueItem *item = object.top_;
+  TStack::StackItem *item = object.top_;
   os << "==> ";
   while (item->next != nullptr) {
     os << item->data.Area() << " ";
