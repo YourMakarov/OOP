@@ -41,7 +41,7 @@ void TStack::Push(const std::shared_ptr<Pentagon> t) {
 
 void TStack::Pop() {
   if (size == 0) {
-    std::cout << "Unable to perform pop! The queue is empty!" << std::endl;
+    std::cout << "Unable to perform pop! The stack is empty!" << std::endl;
     return;
   }
   std::shared_ptr<StackItem> item = this->top_;
