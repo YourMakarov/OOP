@@ -2,28 +2,28 @@
   "variant": 14,
   "figures": [
     "Pentagon",
-    "Hexagon",
-    "Octagon"
+    "Octagon",
+    "Hexagon"
   ],
-  "containers": ["TStack"], ["TLinkedList"],
+  "containers": ["TStack", "TLinkedList"],
   "finished_labs": {
-    "lab1": "lab01",
-    "lab2": "lab02",
-    "lab3": "lab1",
-    "lab4": "lab2",
-    "lab5": "lab3",
-    "lab6": "lab4",
-    "lab7": "lab5",
-    "lab8": "lab6"
+    "lab0.1:5": "lab0_1",
+    "lab0.2:5": "lab0_2",
+    "lab1:5": "lab1",
+    "lab2:5": "lab2",
+    "lab3:5": "lab3",
+    "lab4:5": "lab4",
+    "lab5:5": "lab5",
+    "lab6:5": "lab6"
   },
   "reports": [
     "lab1",
     "lab2",
-    "lab3",
-    "lab4",
-    "lab5",
-    "lab6",
-    "lab7",
+  "lab3",
+  "lab4",
+  "lab5",
+  "lab6",
+  "lab7",
     "lab8"
-  ]
+]
 }
